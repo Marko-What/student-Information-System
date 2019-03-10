@@ -1,0 +1,138 @@
+	
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	
+						<span class="first">{{ first_name}}</span>
+							<span class="last">{{ last_name }}</span>
+						<span class="year">{{ years }}</span>        
+	
+							<div id="subjects" *ngFor="let subject of subjectsArray; index as i">
+									<span class="yes" (click)="removeSubject(subject)">{{subject}}</span>
+							</div><!-- end of subjects divider -->
+			
+		
+
+
+
+			</div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-sm-5">
+<h4>student-overview</h4>
+<div class="container">
+
+<div id="studentsOverview" *ngFor="let student of studentsPeristant | paginate: { itemsPerPage:5, currentPage:p }" class="col-md-7">
+
+	<div class="student">
+		
+			<span class="first">{{ student['first_name'] }}</span>
+			<span class="last">{{ student['last_name'] }}</span>
+			<span class="year">{{ student['year'] }}</span>
+			<br />
+			<button class="edit" (click)="studentEdit(student)">edit</button>
+			<button class="delete" (click)="studentDelete(student)">delete</button>
+			<button class="edit" (click)="overview(student)" data-toggle="modal" data-target="#exampleModal">student overview</button>
+			
+
+	</div>
+		<!-- end of student -->
+
+</div>
+
+</div><!-- end of col-sm-4 col-sm-push-4 -->
+
+<br />
+	<!-- end of studentsOverview -->
+<pagination-controls (pageChange)="p =$event"></pagination-controls>
+
+
+
+
+</div><!-- end of row -->
+
+
+
+
+
+	<div class="studentEdit col-sm-4" [hidden]="toggleDispalyStudentEdit" >
+	
+	
+    <h5>First Name</h5>
+    <div id="First Name" class="userData">
+    		{{ first_name }}
+  	</div>
+
+		 <h5>Last Name</h5>
+    <div id="Last Name" class="userData">
+  		 {{ last_name }}
+  	</div>
+
+	 <h5>Year</h5>
+    <div id="Year" class="userData">
+ 				 {{ years }}
+  	</div>
+
+	 <h5>Subjects</h5>
+    <div id="Subjects">
+
+	
+	<div id="subjects" class="userData" *ngFor="let subject of subjectsArray; index as i">
+
+		
+	<span class="yes" (click)="removeSubject(subject)">{{subject}}</span>
+		
+		
+	</div><!-- end of subjects divider -->
+
+
+	 <select>
+		<option value="biology" (click)="subjectsAdd('biology')">Biology</option>
+		<option value="chemistry" (click)="subjectsAdd('chemistry')">Chemistry</option>
+		<option value="geography" (click)="subjectsAdd('geography')">Geography</option>
+		<option value="physics" (click)="subjectsAdd('physics')">Physics</option>
+		<option value="maths" (click)="subjectsAdd('maths')">Maths and further maths</option>
+		<option value="english" (click)="subjectsAdd('english')">English literature</option>
+		<option value="history" (click)="subjectsAdd('history')">History</option>
+		<option value="modern" (click)="subjectsAdd('modern')">Modern and classical languages</option>
+	</select> 
+
+  	</div><!-- end of Subjects -->
+
+	<br />
+	<button class="edit" (click)="studentSaveSubjects(student)">save</button>
+	<button class="edit" (click)="toggleSwitch()">close</button>
+
+	</div>
+		<!-- end of studentEdit -->
+
+
+
+
+
+  </div>
+	<!-- end of container -->

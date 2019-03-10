@@ -1,0 +1,474 @@
+
+
+
+<div class="lazyJumboHiddenBack" [hidden]="toggleDispalyStudentEdit"></div>
+<!-- later on re factor -->
+<script>
+	
+	$("button#close").on('click', function(){
+		confirm('ss');
+			
+	});
+</script>
+
+
+
+<div class="container">
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">{{ loggedInUser }}</a>
+	<button class="btn btn-dark" (click)="logout()">Logout</button>
+</nav>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addNewStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+
+
+    <div class="modal-content">
+     <!--  <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+
+
+
+      <div class="modal-body">
+	
+		
+
+
+	<form #studentsdata="ngForm" (ngSubmit)="addStudent(studentsdata.value)">
+
+<div class="col-sm-5 leftDivider">
+
+<div class="col-sm-12">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Student First Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" name ="first_name" minlength="4" [(ngModel)]="studentsInput.first_name" #first_name="ngModel" required>
+   
+
+			<div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="alert alert-danger">
+
+				<div *ngIf="first_name.errors.required">
+					Name is required.
+				</div>
+				<div *ngIf="first_name.errors.minlength">
+				 Year 4 characters long.
+				</div>
+
+
+			</div>
+
+		</div><!-- end of form-group -->
+
+
+
+
+	</div> <!-- end of "col-sm-4" -->
+
+
+<br />
+
+
+
+<div class="col-sm-12">
+
+ <div class="form-group">
+
+
+    <label for="exampleInputEmail1">Student Last Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" name ="last_name" minlength="4" [(ngModel)]="studentsInput.last_name" #last_name="ngModel" required>
+   
+
+
+			<div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)"
+					class="alert alert-danger">
+
+				<div *ngIf="last_name.errors.required">
+					Name is required.
+				</div>
+				<div *ngIf="last_name.errors.minlength">
+					Name must be at least 4 characters long.
+				</div>
+		
+			</div>
+
+
+	 </div> <!-- end of "form-group -->
+
+
+ </div> <!-- end of "col-sm-10 -->
+
+
+
+
+<div class="col-sm-12">
+
+
+ <div class="form-group">
+    <label for="studentCardNumber">student Card Number</label>
+		
+
+    <input type="text" class="form-control" id="studentCardNumber" aria-describedby="emailHelp" placeholder="studentCardNumber" name="studentCardNumber" minlength="4"  [(ngModel)]="studentsInput.studentCardNumber" #studentCardNumber="ngModel" required type="number">
+   
+
+		<div *ngIf="studentCardNumber.invalid && (studentCardNumber.dirty || studentCardNumber.touched)"
+				class="alert alert-danger">
+
+			<div *ngIf="studentCardNumber.errors.required">
+				digits are required.
+			</div>
+			<div *ngIf="studentCardNumber.errors.minlength">
+				year must be  4 digits long.
+			</div>
+
+		</div><!-- end of "form-group -->
+
+  </div><!-- end of studentCardNumber.invalid &&  -->
+
+ </div> <!-- end of "col-sm-11 -->
+
+
+
+
+
+
+
+
+
+
+<label for="studentDescription">Student Description</label>
+			 <textarea rows="3" cols="25" name ="studentDescription" minlength="6" [(ngModel)]="studentsInput.studentDescription" #studentDescription="ngModel" required class="studentDescritpion">Type in student description content area ...
+				</textarea> 
+			
+				<div *ngIf="studentDescription.invalid && (studentDescription.dirty || studentDescription.touched)"
+					class="alert alert-danger">
+
+				<div *ngIf="studentDescription.errors.required">
+					description is required.
+				</div>
+				<div *ngIf="studentDescription.errors.minlength">
+					description must be at least 6 characters long.
+				</div>
+		
+			</div>
+
+
+
+
+
+
+
+</div> <!-- end of "leftDivider" -->
+
+
+
+ 
+
+
+<div class="col-sm-5 rightDivider">
+	<div class="form-group">
+		  
+
+
+
+			<label for="fileUpload">File Upload</label>
+							<!-- <input type="file" (change)="onFileSelect($event)"> -->
+
+						<input type="file" (change)="fileChangeEvent($event)" />
+
+						<image-cropper
+								[imageChangedEvent]="imageChangedEvent"
+								[maintainAspectRatio]="true"
+								[aspectRatio]="4 / 3"
+								[resizeToWidth]="128"
+								format="png"
+								(imageCropped)="imageCropped($event)"
+								(imageLoaded)="imageLoaded()"
+								(loadImageFailed)="loadImageFailed()"
+						></image-cropper>
+
+						<img [src]="croppedImage" />
+
+							<button type="button" (click)="onUpload">Upload</button> 
+	</div> <!-- end of "form-group" -->
+
+
+
+
+</div> <!-- end of "rightDivider" -->
+
+
+
+
+
+<!--<div class="col-sm-4"> </div>  end of "col-sm-4 -->
+
+
+
+
+
+
+<div class="row">	
+ <!--<div class="col-sm-4"> </div> <!-- end of "col-sm-4 -->
+
+  </div><!-- end of "row  -->
+
+
+
+
+<div class="row">	
+<!--<div class="col-sm-4"> </div>  end of "col-sm-4 -->
+<div class="col-sm-12">
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Subjects</label>
+   <br />
+	
+
+		<div id="subjects" *ngFor="let subject of subjectsArray; index as i">
+			<span class="yes" (click)="removeSubject(subject)">{{subject}}</span>
+		</div><!-- end of subjects divider -->
+
+	<br />
+
+ <div class="col-sm-12">
+	 <select>
+		<option value="biology" (click)="subjectsAdd('biology')">Biology</option>
+		<option value="chemistry" (click)="subjectsAdd('chemistry')">Chemistry</option>
+		<option value="geography" (click)="subjectsAdd('geography')">Geography</option>
+		<option value="physics" (click)="subjectsAdd('physics')">Physics</option>
+		<option value="maths" (click)="subjectsAdd('maths')">Maths and further maths</option>
+		<option value="english" (click)="subjectsAdd('english')">English literature</option>
+		<option value="history" (click)="subjectsAdd('history')">History</option>
+		<option value="modern" (click)="subjectsAdd('modern')">Modern and classical languages</option>
+	</select> 
+</div><!-- end of "col-sm-12" -->
+
+  </div><!-- end of "form-group -->
+
+
+	 </div> <!-- end of "col-sm-4 -->
+  </div><!-- end of "row  -->
+
+
+<!--<div class="col-sm-4"> </div>  end of "col-sm-4 -->
+	<!-- type="submit" -->
+   <button  class="btn btn-primary" [disabled]="!studentsdata.form.valid" id="addNewStudent">Add new Student</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+
+	
+</form>
+
+
+
+
+		
+
+
+
+
+
+		</div> <!-- end of modal-body -->
+
+
+ <!-- 
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-primary" >Save changes</button>
+      </div>
+ -->
+
+    </div>
+  </div>
+</div>
+
+
+<button class="btn btn-success" (click)="addNewStudent()" data-toggle="modal" data-target="#addNewStudent">Add New Student</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+<!-- 
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+-->
+
+
+      <div class="modal-body">
+				<div class="row">	
+						 <div class="imgDivider col-sm-4">	
+								<img class="userImg" src="assets/imgs/developer.jpg">
+						 </div><!-- end of imgDivider -->
+
+						 <div class="rightDivider col-sm-7">
+								<b>user first:</b> <h5>{{ firstName }}</h5>
+								<b>user last:</b> <h5>{{ lastName }}</h5>
+								<b>user studentCardNumber:</b> <h5>{{ studentCardNumberS }}</h5>
+					   </div><!-- end of leftDivider --> 
+				</div><!-- end of row --> 
+
+					<div class="fullDivider">
+			     	<b>user Description:</b> <h5>{{ studentDescriptionS }}</h5> 
+				
+						
+
+					</div><!-- end of rightDivider -->
+						<hr />	
+
+							<div id="subjects" *ngFor="let subject of subjectsArray; index as i">
+									<span class="yes" >{{subject}}</span>
+							</div><!-- end of subjects divider -->
+			
+	
+			</div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-sm-5">
+<h4>student-overview</h4>
+<div class="container">
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">studentCardNumber</th>
+      <th scope="col">Subjects</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentsPeristant | paginate: { itemsPerPage:20, currentPage:p }">
+     
+      <td>{{ student['first_name'] }}</td>
+      <td>{{ student['last_name'] }}</td>
+      <td>{{ student['studentCardNumber'] }}</td>
+			 <td>{{ student['subjects'] }}</td>
+     <button class="btn btn-warning" (click)="studentEdit(student)">edit</button>
+     <button class="btn btn-danger" (click)="studentDelete(student)">delete</button>
+     <button class="btn btn-info" (click)="overview(student)" data-toggle="modal" data-target="#exampleModal">student overview</button>      	
+    </tr>
+   
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!-- end of col-sm-4 col-sm-push-4 -->
+
+<br />
+	<!-- end of studentsOverview -->
+
+<pagination-controls (pageChange)="p =$event"></pagination-controls>
+
+
+
+
+</div><!-- end of row -->
+
+
+
+
+
+<div class="jumbotron lazyJumbo col-sm-8" [hidden]="toggleDispalyStudentEdit">
+
+
+<h2 class="display">Student Data</h2>
+  <p class="lead">{{ firstName }}  {{ lastName }} </p>
+	<p class="lead"> {{ studentCardNumberS }} </p>
+
+  <hr class="my-4" id="coloradoLime">
+	
+
+  <p>{{ studentDescriptionS }}</p>
+   <div id="Subjects">
+
+	
+	<div id="subjects" class="userData" *ngFor="let subject of subjectsArray; index as i">	
+		<span class="yes" (click)="removeSubject(subject)">{{subject}}</span>
+	</div><!-- end of subjects divider -->
+	
+		<br />
+<div class="col-sm-12">
+	 <select>
+		<option value="biology" (click)="subjectsAdd('biology')">Biology</option>
+		<option value="chemistry" (click)="subjectsAdd('chemistry')">Chemistry</option>
+		<option value="geography" (click)="subjectsAdd('geography')">Geography</option>
+		<option value="physics" (click)="subjectsAdd('physics')">Physics</option>
+		<option value="maths" (click)="subjectsAdd('maths')">Maths and further maths</option>
+		<option value="english" (click)="subjectsAdd('english')">English literature</option>
+		<option value="history" (click)="subjectsAdd('history')">History</option>
+		<option value="modern" (click)="subjectsAdd('modern')">Modern and classical languages</option>
+	</select> 
+  	</div><!-- end of col-sm-12 -->
+
+
+
+  	</div><!-- end of Subjects -->
+
+	<br />
+	<button class="btn btn-danger" (click)="studentSaveSubjects(student)">save</button>
+	<button class="btn btn-info" (click)="toggleSwitch()">close</button>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+	
+
+
+
+
+  </div>
+	<!-- end of container -->

@@ -1,0 +1,109 @@
+
+.userData {
+	color:#337ab7;	
+}
+
+#subjects.userData:hover {
+	color: #d9534f;	
+	font-size:15px;
+}
+
+.yes {
+	background-color: #b0b0b0;
+	padding: 5px;
+	border-radius: 5px;
+	margin: 5px;
+	display: inline;
+	float: left;
+}
+
+.alert {
+	padding: 5px;
+	margin: 10px;
+}
+
+
+.lazyJumbo {
+	padding-right: 60px;
+	padding-left: 60px;
+	background-color: #a7a7a7;
+	z-index: 9;
+	position: absolute;
+
+}
+
+
+.lazyJumboHiddenBack {
+	width:1000%;
+	height:1000%;
+	z-index:8;
+	opacity:0.8;
+	background-color:black;
+	position: absolute;
+	box-shadow: 0px 0px 15px gray;
+	
+}
+
+.coloradoLime {
+	background-color:#d9534f;
+	height:3px;
+}
+
+.coloradoLimegreen {
+	background-color:#2aabd2;
+	height:3px;
+}
+
+
+.btn {
+	margin: 5px;
+}
+
+div.fullDivider{
+ /*  border: 1px solid red;*/
+   width: 100%;
+   font-size:12px;
+   transition: all 0.7s;
+  
+}
+
+div.modal-content:hover div.fullDivider {
+ /*  border: 1px solid red;*/
+   width: 100%;
+ background-color:#5bc0de;
+   font-size:15px;
+}
+
+div.imgDivider{
+  /* border: 1px solid red;*/
+   /*width: 45%;*/
+}
+
+div.leftDivider {
+   /* border: 1px solid red;*
+   /* width: 45%;*/
+
+}
+
+div.rightDivider {
+
+  margin-left: 20px;
+  /*  border: 1px solid red;*/
+   /* width: 45%;
+    float:right;*/
+	
+}
+
+textarea.studentDescritpion {
+	padding:10px;
+	border: 1px solid #ccc;
+	border-radius:5px;
+}
+
+.userImg {
+	width: 125px;
+	height: auto;
+	border-radius: 100px;
+	border: 5px solid gray;
+}
+

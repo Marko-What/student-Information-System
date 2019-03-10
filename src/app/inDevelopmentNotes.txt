@@ -1,0 +1,54 @@
+/* functionality responsible for fecthing the students  data either to backend api in our case 	just json object does exist inside single route specific context students overview 
+
+				as we are developing frontend application simulating functionality without api service on back fecthing the data from json and storing it inside a variable which later manipulated like adding new student item in an array, delete student item from the array or remodifty existing functionality
+
+				persistance layer in an angular application / interacting with it should exist inside services 				services interfaces polymorphism, should serve as as an api to bussines part on an application where the application logic definitions are should easily interact with injected services interfaces 
+	
+				all the functionality interacting with mentioned above json fecth student data variable placeholder is minulated throughout service interface
+
+				cause of fecthing the data using subscribers technique mimicing oberver design pattern where subscribers gets response after particular function call or event happening.
+
+			still does exist inside comonent context definitions particular functionality is missing here
+			the connection between services and httpclient angular module does not work inside services layer but does inside component context definitions
+					in particular major application structure does holds two namespace context areas 
+					app.module
+				and lazy.module
+		lazt module serve the application an with an interface behind angular route specific compnents which are lazily loaded after requesto to a resource is executed so there is no need to invoke unneccessary instances of components
+		behind the route 
+
+ 			
+
+	
+
+		
+			*/
+
+
+    after successfuly installed npm latest version and npm install dependencies in development notes files suddenly closed down. So those are gone. Think of it rather save trackable notes about development backed/to save up mode.
+
+    18.50h 6.march.2019
+    other issues solving
+
+
+    trying to delete or somehow edit interact with users api does not work
+
+    
+            route
+        /lazy/studentoverview
+            corresponding controller
+
+    
+            variable declaration 
+                still without typescript feature ecma script 6 support
+                            those are not working outof the box installation 
+                            check out also browser support about
+                                    cdn babel in between otherwise 
+                                        transpailing or if older browser
+                                                translate script to ecma 5 is in place
+                                        much work needs to be done that way
+                    think of it 
+                    bootstrap application at first and later on based on application need implementing functionality
+
+           
+        
+    
