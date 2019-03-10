@@ -1,27 +1,7 @@
-# StudentSystem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+Student information system, where the user can add a new student (basic student information and subjects that student will be part of), edit the student (subjects only), and delete a student.
 
-## Development server
+Fields for adding and editing students, validated. Student overview page where all the students will be listed (table with pagination, 20 users per page). If an user is not authenticated then he will be redirected to /login page. Simple authentication which saves a token into localStorage. JS setTimeout method to simulate endpoint calls to the serve).
+/overview page (/overview page lazily loaded).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Authentication, Form Validation, Routing, angular6
